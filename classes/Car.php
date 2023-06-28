@@ -6,6 +6,6 @@ class Car extends BaseCar
     public function __construct($data)
     {
         parent::__construct($data);
-        $this->passengerSeatsCount = $data['passenger_seats_count'];
+        $this->passengerSeatsCount = (int) $data['passenger_seats_count'];
     }
 }
