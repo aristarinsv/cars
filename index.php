@@ -11,11 +11,13 @@ include __DIR__ . '/classes/SpecMachine.php';
 function getCarsObject(){
     $file = __DIR__ . '/load/source_car_data.csv';
     $result = [];
-    if(!file_exists($file)){
-        return;
+    if(!file_exists($file))
+    {
+        throw new \Exception("Файл '{$file}' не существует.");
     }
     $fh = fopen($file, "r");
-    while (($row = fgetcsv($fh, 0, CSV_SEPARATOR)) !== false) {
+    while (($row = fgetcsv($fh, 0, CSV_SEPARATOR)) !== false)
+    {
         $car_type = "";
         if(is_array($row) && count($row)-1 !== CSV_COUNT_ROWS)
         {

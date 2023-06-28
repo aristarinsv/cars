@@ -10,16 +10,21 @@ class Truck extends BaseCar
     public function __construct($data)
     {
          parent::__construct($data);
-         if($data['body_whl'] !== "" && strpos($data['body_whl'], self::BODY_WHL_SEPARATOR)){
-            $size = explode(self::BODY_WHL_SEPARATOR, $data['body_whl']);
-            $this->bodyLength = (float) $size[0];
-            $this->bodyWidth = (float) $size[1];
-            $this->bodyHeight = (float) $size[2];
+         if($data['body_whl'] !== "")
+         {
+             if(!strpos($data['body_whl'], self::BODY_WHL_SEPARATOR))
+             {
+                 throw new \Exception("body_whl имеет неверный формат.");
+             }
+             $size = explode(self::BODY_WHL_SEPARATOR, $data['body_whl']);
+             $this->bodyLength = (float) $size[0];
+             $this->bodyWidth = (float) $size[1];
+             $this->bodyHeight = (float) $size[2];
          }
     }
 
     public function getBodyVolume() : float
     {
-        return (float) $this->bodyHeight  *  $this->bodyLength * $this->bodyWidth;
+         return (float) $this->bodyHeight  *  $this->bodyLength * $this->bodyWidth;
     }
 }
